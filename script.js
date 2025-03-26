@@ -23,6 +23,10 @@ function addBookToLibrary(book) {
 const book1 = new Book("Harry Potter I", "J K Rowling", 268, true);
 const book2 = new Book("Harry Potter II", "J K Rowling", 300, false);
 
+function removeBookFromLibrary(book){
+    myLibrary.splice(myLibrary.indexOf(book),1)
+}
 addBookToLibrary(book1);
 addBookToLibrary(book2);
+removeBookFromLibrary(book1)
 console.table(myLibrary);
