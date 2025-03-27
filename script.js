@@ -1,4 +1,11 @@
 const myLibrary = [];
+const toggleButton = document.querySelector(".toggle-button"); 
+const toggleForm = document.querySelector("#toggle-form");
+
+toggleButton.addEventListener("click", () => {
+    toggleForm.classList.toggle("hidden"); 
+});
+
 
 function Book(title,author,pages,read) {
     this.id = crypto.randomUUID();
@@ -30,3 +37,5 @@ addBookToLibrary(book1);
 addBookToLibrary(book2);
 removeBookFromLibrary(book1)
 console.table(myLibrary);
+
+toggleForm()
