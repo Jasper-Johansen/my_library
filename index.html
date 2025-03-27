@@ -50,6 +50,21 @@
             </tbody>
         </table>
         <button class="add-btn">Add Book</button>
+        <form class = "form-details" hidden>
+            <label for="title">Title:</label><br>
+            <input type="text" name="title" placeholder="Title"><br>
+            <label for="author">Author:</label><br>
+            <input type="text" name="author" placeholder="Author"><br>
+            <label for="pages">Pages:</label><br>
+            <input type="number" name="pages" placeholder="Pages"><br>
+            <label for="status">Status:</label><br>
+            <select name="status">
+                <option value="read">Read</option>
+                <option value="unread">Not Read</option>
+                <option value="reading">Reading</option>
+            </select>
+
+        </form>
     </div>
 </body>
 </html>
