@@ -57,11 +57,11 @@
         <button class="toggle-button">Add Book</button>
         <form class = "hidden" id="toggle-form">
             <label for="title">Title:</label><br>
-            <input type="text" name="title" id="title" placeholder="Title"><br>
+            <input type="text" name="title" id="title" placeholder="Title" required><br>
             <label for="author">Author:</label><br>
-            <input type="text" name="author" id="author" placeholder="Author"><br>
+            <input type="text" name="author" id="author" placeholder="Author" required><br>
             <label for="pages">Pages:</label><br>
-            <input type="number" name="pages" id="pages" placeholder="Pages"><br>
+            <input type="number" name="pages" id="pages" placeholder="Pages" required><br>
             <label for="status">Status:</label><br>
             <select name="status">
                 <option value="read">Read</option>
@@ -70,6 +70,7 @@
             </select>
 
         </form>
+        <button class="hidden add-btn">Add</button>
     </div>
 </body>
 </html>
