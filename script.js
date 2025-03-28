@@ -3,9 +3,11 @@ const toggleButton = document.querySelector(".toggle-button");
 const toggleForm = document.querySelector("#toggle-form");
 const delButtons = document.querySelectorAll(".dlt")
 const tableRow = document.querySelectorAll("tr");
+const addButton = document.querySelector(".add-btn")
 
 toggleButton.addEventListener("click", () => {
-    toggleForm.classList.toggle("hidden"); 
+    toggleForm.classList.toggle("hidden");
+    addButton.classList.toggle("hidden")
 });
 
 delButtons.forEach(button => {
@@ -17,12 +19,12 @@ delButtons.forEach(button => {
     });
 });
 
-/*function Book(title,author,pages,read) {
+function Book(title,author,pages,read) {
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
-     this.pages = pages;
-     this.read = read;
+    this.pages = pages;
+    this.read = read;
 
     this.readStatus = function(){
         if (this.read === true) {
@@ -33,14 +35,16 @@ delButtons.forEach(button => {
     }
 }
 
+addButton.addEventListener("click", () => {
+    
+});
+
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
-const book1 = new Book("Harry Potter I", "J K Rowling", 268, true);
-const book2 = new Book("Harry Potter II", "J K Rowling", 300, false);
 
 function removeBookFromLibrary(book){
     myLibrary.splice(myLibrary.indexOf(book),1)
-}*/
+}
 
