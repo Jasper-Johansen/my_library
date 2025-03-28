@@ -1,13 +1,23 @@
 const myLibrary = [];
 const toggleButton = document.querySelector(".toggle-button"); 
 const toggleForm = document.querySelector("#toggle-form");
+const delButtons = document.querySelectorAll(".dlt")
+const tableRow = document.querySelectorAll("tr");
 
 toggleButton.addEventListener("click", () => {
     toggleForm.classList.toggle("hidden"); 
 });
 
+delButtons.forEach(button => {
+    button.addEventListener("click",() =>{
+        const row = button.closest("tr");
+        if (row){
+            row.remove();
+        }
+    });
+});
 
-function Book(title,author,pages,read) {
+/*function Book(title,author,pages,read) {
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
@@ -32,10 +42,5 @@ const book2 = new Book("Harry Potter II", "J K Rowling", 300, false);
 
 function removeBookFromLibrary(book){
     myLibrary.splice(myLibrary.indexOf(book),1)
-}
-addBookToLibrary(book1);
-addBookToLibrary(book2);
-removeBookFromLibrary(book1)
-console.table(myLibrary);
+}*/
 
-toggleForm()
