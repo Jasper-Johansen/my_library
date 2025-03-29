@@ -15,13 +15,14 @@ toggleButton.addEventListener("click", () => {
     addButton.classList.toggle("hidden")
 });
 
-delButtons.forEach(button => {
-    button.addEventListener("click",() =>{
-        const row = button.closest("tr");
-        if (row){
-            row.remove();
-        }
-    });
+tableBody.addEventListener("click", (e) =>{
+    if (e.target.classList.contains("dlt")){
+       row = e.target.closest("tr");
+       if(row){
+        row.remove();
+       }
+    }
+
 });
 
 addButton.addEventListener("click", () => {
