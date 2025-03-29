@@ -39,10 +39,7 @@ function addBookToLibrary(book) {
 }
 
 addButton.addEventListener("click", () => {    
-    if(inputTitle!=="" && 
-        inputAuthor!=="" &&
-        inputPages!=="" &&
-        inputReadStatus.value!=="" ){
+    if(inputTitle.value !== "" && inputAuthor.value !== "" && inputPages.value !== "" && inputReadStatus.value !== "" ){
         const newBook = new Book(inputTitle.value,inputAuthor.value,inputPages.value,
         inputReadStatus.value.charAt(0).toUpperCase()+inputReadStatus.value.slice(1));
         addBookToLibrary(newBook);
@@ -50,13 +47,16 @@ addButton.addEventListener("click", () => {
         inputTitle.value = "";
         inputAuthor.value = "";
         inputPages.value= "";
-        inputReadStatus.checked = false;
-            }
+        inputReadStatus.selectedIndex = 0;
+        tableBody.innerHTML = '';
+
+        createBookTableRow();
+    }
 });
 
-const theLightEaters = new Book("The Light Eaters", "Zoe Schlangar", 304, "Read");
-const fermatTheorem = new Book("Fermat's Last Theorem", "Simon Singh", 456, "Read");
-const aI = new Book("AI 2041", "Kai-Fu Lee", 368, "Read");
+const theLightEaters = new Book("The Light Eaters", "Zoe Schlangar", "304", "Read");
+const fermatTheorem = new Book("Fermat's Last Theorem", "Simon Singh", "456", "Read");
+const aI = new Book("AI 2041", "Kai-Fu Lee", "368", "Read");
 addBookToLibrary(theLightEaters);
 addBookToLibrary(fermatTheorem);
 addBookToLibrary(aI);
@@ -78,7 +78,7 @@ function createBookTableRow(){
         tableRow.appendChild(authorRow);
 
         const pagesRow = document.createElement("td");
-        pagesRow.textContent = book.pages;
+        pagesRow.textContent = parseInt(book.pages);
         tableRow.appendChild(pagesRow);
 
         const readStatusRow = document.createElement("td");
@@ -101,4 +101,5 @@ function removeBookFromLibrary(book){
     myLibrary.splice(myLibrary.indexOf(book),1)
 }
 
-createBookTableRow()
+createBookTableRow();
+
