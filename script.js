@@ -34,9 +34,9 @@ addButton.addEventListener("click", () => {
         this.readStatus = readStatus;
     }
     
-    if(inputTitle!=="" || 
-        inputAuthor!=="" ||
-        inputPages!=="" ||
+    if(inputTitle!=="" && 
+        inputAuthor!=="" &&
+        inputPages!=="" &&
         inputReadStatus.value!=="" ){
             const newBook = new Book(inputTitle.value,inputAuthor.value,inputPages.value,
                 inputReadStatus.value.charAt(0).toUpperCase()+inputReadStatus.value.slice(1));
