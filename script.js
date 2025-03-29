@@ -53,6 +53,7 @@ addBookToLibrary(aI);
 
 
 function createBookTableRow(){
+    tableBody.innerHTML = '';  //Clears the tbody everytime a book is created/deleted
     myLibrary.forEach((book,index) =>{
         const tableRow = document.createElement("tr");
         /*Learned and practiced setAttribute for the first time:
@@ -108,8 +109,10 @@ function removeBookFromLibrary(){
             }
            
         }
+        createBookTableRow();
         }
     });
+    
 }
 
 createBookTableRow();
