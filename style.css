@@ -37,6 +37,7 @@ body{
 
 a{
     text-decoration: none;
+    color:brown;
 }
 
 table{
@@ -56,4 +57,14 @@ input{
 button{
     width: 100px;
     height:30px;
+}
+
+.toggle-button:hover{
+    background-color: greenyellow;
+    font-weight:bolder;
+}
+
+.dlt:hover{
+    background-color: red;
+    font-weight:bolder;
 }
