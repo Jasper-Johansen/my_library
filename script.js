@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 const toggleButton = document.querySelector(".toggle-button"); 
 const toggleForm = document.querySelector("#toggle-form");
 const delButtons = document.querySelectorAll(".dlt")
@@ -25,67 +25,80 @@ tableBody.addEventListener("click", (e) =>{
 
 });
 
-addButton.addEventListener("click", () => {
+function Book(title,author,pages,readStatus) {
+    this.id = crypto.randomUUID();
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
+}
 
-    function Book(title,author,pages,readStatus) {
-        this.id = crypto.randomUUID();
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.readStatus = readStatus;
-    }
-    
+
+function addBookToLibrary(book) {
+    myLibrary.push(book);
+}
+
+addButton.addEventListener("click", () => {    
     if(inputTitle!=="" && 
         inputAuthor!=="" &&
         inputPages!=="" &&
         inputReadStatus.value!=="" ){
-            const newBook = new Book(inputTitle.value,inputAuthor.value,inputPages.value,
-                inputReadStatus.value.charAt(0).toUpperCase()+inputReadStatus.value.slice(1));
-            myLibrary.push(newBook);
-            const tableRow = document.createElement("tr");
+        const newBook = new Book(inputTitle.value,inputAuthor.value,inputPages.value,
+        inputReadStatus.value.charAt(0).toUpperCase()+inputReadStatus.value.slice(1));
+        addBookToLibrary(newBook);
 
-            const idRow = document.createElement("td");
-            idRow.textContent = myLibrary.length;
-            tableRow.appendChild(idRow);
-
-            const titleRow = document.createElement("td");
-            titleRow.textContent = newBook.title;
-            tableRow.appendChild(titleRow);
-
-            const authorRow = document.createElement("td");
-            authorRow.textContent = newBook.author;
-            tableRow.appendChild(authorRow);
-
-            const pagesRow = document.createElement("td");
-            pagesRow.textContent = newBook.pages;
-            tableRow.appendChild(pagesRow);
-
-            const readStatusRow = document.createElement("td");
-            readStatusRow.textContent = newBook.readStatus;
-            tableRow.appendChild(readStatusRow);
-
-            const delRow = document.createElement("td");
-            const dltButton = document.createElement("button");
-            dltButton.classList.add("dlt");
-            dltButton.textContent = "Delete";
-            delRow.appendChild(dltButton);
-            tableRow.appendChild(delRow);
-
-            tableBody.appendChild(tableRow);
-
-            inputTitle.value = "";
-            inputAuthor.value = "";
-            inputPages.value= "";
-            inputReadStatus.checked = false;
-        }
+        inputTitle.value = "";
+        inputAuthor.value = "";
+        inputPages.value= "";
+        inputReadStatus.checked = false;
+            }
 });
 
+const theLightEaters = new Book("The Light Eaters", "Zoe Schlangar", 304, "Read");
+const fermatTheorem = new Book("Fermat's Last Theorem", "Simon Singh", 456, "Read");
+const aI = new Book("AI 2041", "Kai-Fu Lee", 368, "Read");
+addBookToLibrary(theLightEaters);
+addBookToLibrary(fermatTheorem);
+addBookToLibrary(aI);
 
-function addBookToLibrary(book) {
-  myLibrary.push(book);
+
+function createBookTableRow(){
+    myLibrary.forEach((book,index) =>{
+        const tableRow = document.createElement("tr");
+        const idRow = document.createElement("td");
+        idRow.textContent = index+1;
+        tableRow.appendChild(idRow);
+
+        const titleRow = document.createElement("td");
+        titleRow.textContent = book.title;
+        tableRow.appendChild(titleRow);
+
+        const authorRow = document.createElement("td");
+        authorRow.textContent = book.author;
+        tableRow.appendChild(authorRow);
+
+        const pagesRow = document.createElement("td");
+        pagesRow.textContent = book.pages;
+        tableRow.appendChild(pagesRow);
+
+        const readStatusRow = document.createElement("td");
+        readStatusRow.textContent = book.readStatus;
+        tableRow.appendChild(readStatusRow);
+
+        const delRow = document.createElement("td");
+        const dltButton = document.createElement("button");
+        dltButton.classList.add("dlt");
+        dltButton.textContent = "Delete";
+        delRow.appendChild(dltButton);
+        tableRow.appendChild(delRow);
+
+        tableBody.appendChild(tableRow);
+
+    });
 }
 
 function removeBookFromLibrary(book){
     myLibrary.splice(myLibrary.indexOf(book),1)
 }
 
+createBookTableRow()
