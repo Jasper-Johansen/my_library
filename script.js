@@ -15,16 +15,6 @@ toggleButton.addEventListener("click", () => {
     addButton.classList.toggle("hidden")
 });
 
-tableBody.addEventListener("click", (e) =>{
-    if (e.target.classList.contains("dlt")){
-       row = e.target.closest("tr");
-       if(row){
-        row.remove();
-       }
-    }
-
-});
-
 function Book(title,author,pages,readStatus) {
     this.id = crypto.randomUUID();
     this.title = title;
@@ -65,6 +55,11 @@ addBookToLibrary(aI);
 function createBookTableRow(){
     myLibrary.forEach((book,index) =>{
         const tableRow = document.createElement("tr");
+        /*Learned and practiced setAttribute for the first time:
+        It sets the attribute name to row-id and assign its value to book.id*/
+
+        tableRow.setAttribute("row-id",book.id)   
+
         const idRow = document.createElement("td");
         idRow.textContent = index+1;
         tableRow.appendChild(idRow);
@@ -97,9 +92,26 @@ function createBookTableRow(){
     });
 }
 
-function removeBookFromLibrary(book){
-    myLibrary.splice(myLibrary.indexOf(book),1)
+function removeBookFromLibrary(){
+    tableBody.addEventListener("click", (e) =>{
+        if (e.target.classList.contains("dlt")){
+           row = e.target.closest("tr");
+           if(row){
+            const bookId = row.getAttribute("row-id");
+            row.remove();
+
+            const bookIndex = myLibrary.findIndex(book => book.id === bookId);
+           
+            if(bookIndex !== -1){
+                myLibrary.splice(bookIndex,1);
+
+            }
+           
+        }
+        }
+    });
 }
 
 createBookTableRow();
+removeBookFromLibrary();
 
